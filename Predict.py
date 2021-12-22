@@ -21,18 +21,18 @@ def predict(chats):
     positiveScore = 0
     negativeScore = 0
     output = model.predict(input_to_predict)
-    print("output: ", output)
+    # print("output: ", output)
     for i in output:
         if(i[0] > 0.5):
             positiveScore = positiveScore+1
         else:
             negativeScore = negativeScore+1
     totalScore = positiveScore/(positiveScore+negativeScore)
-    return totalScore
+    return (totalScore, positiveScore, negativeScore)
 
 
-print(predict(chats=["Yes Yes Yes Yes YES!!!", "I am so so happy",
-      "Today is the best day", "This is just great"]))
+# print(predict(chats=["Yes Yes Yes Yes YES!!!", "I am so so happy",
+#       "Today is the best day", "This is just great"]))
 
-print(predict(chats=['I am so sad', "All the misfortunes are given to me", "This was a very bad day"
-      "I was in an accident and now I have to pay for my car's reapirs. I am already short on money and I am not sure if I will even be able to pay rent next week"]))
+# print(predict(chats=['I am so sad', "All the misfortunes are given to me", "This was a very bad day"
+#       "I was in an accident and now I have to pay for my car's reapirs. I am already short on money and I am not sure if I will even be able to pay rent next week"]))

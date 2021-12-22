@@ -1,5 +1,6 @@
 from flask import Flask, json, jsonify
 from Predict import predict
+import ast
 app = Flask(__name__)
 
 
@@ -7,14 +8,15 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-# TODO change from string to list of strings
-
 
 @app.route("/<string:s>")
 def called(s):
+    print("s=", s)
+    input_string = ast.literal_eval(s)
+    print("inp_s=", input_string)
     result = {
-        "user_query": s,
-        "chatbot_response": predict(s)
+        "score": input_string,
+        "sentence_list": predict(input_string)
     }
     return jsonify(result)
 
