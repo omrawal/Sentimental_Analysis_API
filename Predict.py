@@ -27,7 +27,13 @@ def predict(chats):
             positiveScore = positiveScore+1
         else:
             negativeScore = negativeScore+1
+    # laplacian correction
+    if(positiveScore <= 0):
+        positiveScore = 1
+    if(negativeScore <= 0):
+        negativeScore = 1
     totalScore = positiveScore/(positiveScore+negativeScore)
+    totalScore = round(totalScore, 2)
     return (totalScore, positiveScore, negativeScore)
 
 
