@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "<p>Hello, World! this is sentimental analysis api</p>"
 
 
 @app.route("/<string:s>")
@@ -22,4 +22,4 @@ def called(s):
 
 
 if __name__ == '__main__':
-    app.run(host="localhost", port=6000, debug=True)
+    app.run(host="localhost", port=5500, debug=True)
