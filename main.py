@@ -14,8 +14,12 @@ def called(s):
     print("s=", s)
     input_string = ast.literal_eval(s)
     print("inp_s=", input_string)
+    res = predict(input_string)
     result = {
-        "score": predict(input_string),
+
+        "total_score": res[0],
+        "negative_score": res[1],
+        "positive_score": res[2],
         "sentence_list": input_string,
     }
     return jsonify(result)
