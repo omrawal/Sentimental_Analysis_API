@@ -9,6 +9,7 @@ from keras import regularizers
 
 
 def predict(chats):
+    print('chats are ->>>>', chats)
     max_words = 200
     max_len = 200
     tokenizer = Tokenizer(num_words=max_words)
