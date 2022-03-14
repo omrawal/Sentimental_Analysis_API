@@ -28,7 +28,7 @@ def called(s):
 
 
 @app.route('/', methods=['GET', 'POST'])
-def create_row_in_gs():
+def returnHappinessIndex():
     if request.method == 'POST':
         sentList = ast.literal_eval(request.args.get('sentList'))
         print('############')
@@ -45,7 +45,7 @@ def create_row_in_gs():
         }
         return jsonify(result)
     else:
-        return "<p>Please use proper API POST request call</p>"
+        return "<p>Please use proper API POST request call for happiness index</p>"
 
 
 if __name__ == '__main__':
