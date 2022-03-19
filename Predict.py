@@ -29,16 +29,23 @@ def predict(chats):
         else:
             negativeScore = negativeScore+1
     # laplacian correction
+    flag = False
     if(positiveScore <= 0 or negativeScore <= 0):
+        flag = True
         positiveScore += 1
         negativeScore += 1
     totalScore = positiveScore/(positiveScore+negativeScore)
     totalScore = round(totalScore, 2)
-    return (totalScore, positiveScore, negativeScore)
+    if(flag):
+        print('(Total , pos, neg)', (totalScore, positiveScore-1, negativeScore-1))
+        return (totalScore, positiveScore-1, negativeScore-1)
+    else:
+        print('(Total , pos, neg)', (totalScore, positiveScore, negativeScore))
+        return (totalScore, positiveScore, negativeScore)
 
 
-# print(predict(chats=["Yes Yes Yes Yes YES!!!", "I am so so happy",
-#       "Today is the best day", "This is just great"]))
+print(predict(chats=["Yes Yes Yes Yes YES!!!", "I am so so happy",
+      "Today is the best day", "This is just great"]))
 
-# print(predict(chats=['I am so sad', "All the misfortunes are given to me", "This was a very bad day"
-#       "I was in an accident and now I have to pay for my car's reapirs. I am already short on money and I am not sure if I will even be able to pay rent next week"]))
+print(predict(chats=['I am so sad', "All the misfortunes are given to me", "This was a very bad day"
+      "I was in an accident and now I have to pay for my car's reapirs. I am already short on money and I am not sure if I will even be able to pay rent next week"]))
