@@ -39,8 +39,8 @@ def returnHappinessIndex():
         result = {
 
             "total_score": res[0],
-            "negative_score": res[1],
-            "positive_score": res[2],
+            "positive_score": res[1],
+            "negative_score": res[2],
             "sentence_list": sentList,
         }
         return jsonify(result)

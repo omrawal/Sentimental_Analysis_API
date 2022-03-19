@@ -13,7 +13,8 @@ def predict(chats):
     max_words = 200
     max_len = 200
     tokenizer = Tokenizer(num_words=max_words)
-    model = keras.models.load_model(filepath='model.h5', compile=False)
+    model = keras.models.load_model(
+        filepath='improved_model.h5', compile=False)
     tokenizer.fit_on_texts(chats)
     sequences = tokenizer.texts_to_sequences(chats)
     input_to_predict = pad_sequences(sequences, maxlen=max_len)
@@ -22,9 +23,21 @@ def predict(chats):
     positiveScore = 0
     negativeScore = 0
     output = model.predict(input_to_predict)
-    # print("output: ", output)
+    newLis = []
+    for opt in output:
+        # a = float(str(opt[0]))
+        a = float("{:.8f}".format(float(str(opt[0]))))
+        b = float("{:.8f}".format(float(str(opt[1]))))
+        newLis.append([a, b])
+    print("##@$@#@ --> output: ", output)
+    print("##@$@#@ --> newLis: ", newLis)
+    print('chats are ->>>>', chats)
+    print("########3")
+    for i in range(len(newLis)):
+        print(chats[i], '--->', newLis[i])
+    print("########3")
     for i in output:
-        if(i[0] > 0.5):
+        if(i[0] > i[1]):
             positiveScore = positiveScore+1
         else:
             negativeScore = negativeScore+1
@@ -34,10 +47,11 @@ def predict(chats):
         flag = True
         positiveScore += 1
         negativeScore += 1
-    totalScore = positiveScore/(positiveScore+negativeScore)
+    totalScore = (positiveScore/(positiveScore+negativeScore))
     totalScore = round(totalScore, 2)
     if(flag):
-        print('(Total , pos, neg)', (totalScore, positiveScore-1, negativeScore-1))
+        print('0 found  (Total, pos, neg)',
+              (totalScore, positiveScore-1, negativeScore-1))
         return (totalScore, positiveScore-1, negativeScore-1)
     else:
         print('(Total , pos, neg)', (totalScore, positiveScore, negativeScore))
