@@ -8,6 +8,8 @@ from keras.preprocessing.sequence import pad_sequences
 from keras import regularizers
 import nltk
 
+# dataset is present on google drive
+
 
 def predict(chats):
     nltk.download('stopwords')
