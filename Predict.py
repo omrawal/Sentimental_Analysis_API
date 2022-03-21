@@ -6,19 +6,20 @@ import pickle
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras import regularizers
+import nltk
 
 
 def predict(chats):
+    nltk.download('stopwords')
     print('chats are ->>>>', chats)
-    max_words = 200
-    max_len = 200
+    max_words = 2000
+    max_len = 100
     tokenizer = Tokenizer(num_words=max_words)
     model = keras.models.load_model(
-        filepath='improved_model.h5', compile=False)
+        filepath='model.h5', compile=False)
     tokenizer.fit_on_texts(chats)
     sequences = tokenizer.texts_to_sequences(chats)
     input_to_predict = pad_sequences(sequences, maxlen=max_len)
-    input_to_predict = np.array(input_to_predict)
     input_to_predict = np.array(input_to_predict)
     positiveScore = 0
     negativeScore = 0
