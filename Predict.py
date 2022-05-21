@@ -24,18 +24,13 @@ def predict(chats):
     with open('tokenizer.pickle', 'rb') as handle:
         tok = pickle.load(handle)
     sequences = tok.texts_to_sequences(chats)
-    print(sequences)
     input_to_predict = sequence.pad_sequences(sequences, maxlen=max_len)
-    print(input_to_predict)
     input_to_predict = np.array(input_to_predict)
-    print(input_to_predict)
     positiveScore = 0
     negativeScore = 0
     output = model.predict(input_to_predict)
     print("##@$@#@ --> output: ", output)
-    # print("##@$@#@ --> newLis: ", newLis)
     print('chats are ->>>>', chats)
-    # print("output: ", output)
     for i in output:
         if(i[0] > 0.5):
             positiveScore = positiveScore+1
