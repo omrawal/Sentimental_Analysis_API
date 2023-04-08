@@ -4,7 +4,7 @@ from Predict import predict
 import requests
 import ast
 
-# dataset link -> https://drive.google.com/file/d/1zI4EGD0XEsiZWrOf7Ymoa2QCYx2Wee6J/view?usp=sharing
+# dataset link -> https://mega.nz/file/Qahg1YiR#-svBlLcgRp5Jt01k9XMKQagftes33BhbOUBnuY29kQY
 
 app = Flask(__name__)
 
